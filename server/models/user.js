@@ -17,6 +17,14 @@ const Users = db.define('Users', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  zipCode: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   message: {
     type: Sequelize.TEXT,
     allowNull: false,
