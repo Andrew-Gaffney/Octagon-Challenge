@@ -78,20 +78,27 @@ export default class Contact extends Component {
   }
 
   handleSubmit(event) {
-    axios.post('/api/contact', {
-      email: this.state.email,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      message: this.state.message,
-      zipCode: this.state.zipCode,
-      state: this.state.state,
-    })
-      .then((response) => {
-        console.log(response);
+    if (!this.state.validEmail || !this.state.validFirstName || !this.state.validLastName
+      || !this.state.validMessage || !this.state.validZip) {
+      alert('One or more fields is either blank or invalid');
+      event.preventDefault();
+    }
+    else {
+      axios.post('/api/contact', {
+        email: this.state.email,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        message: this.state.message,
+        zipCode: this.state.zipCode,
+        state: this.state.state,
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }
 
   render() {

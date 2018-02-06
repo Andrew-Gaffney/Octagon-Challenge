@@ -9,7 +9,7 @@ router.post('/contact', (req, res) => {
     lastName: req.body.lastName,
     message: req.body.message,
     zipCode: req.body.zipCode,
-    state: req.boy.state,
+    state: req.body.state,
   })
     .then((newUser) => {
       res.send(newUser);

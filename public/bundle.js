@@ -44036,18 +44036,23 @@ var Contact = function (_Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
-      _axios2.default.post('/api/contact', {
-        email: this.state.email,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        message: this.state.message,
-        zipCode: this.state.zipCode,
-        state: this.state.state
-      }).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-        console.error(error);
-      });
+      if (!this.state.validEmail || !this.state.validFirstName || !this.state.validLastName || !this.state.validMessage || !this.state.validZip) {
+        alert('One or more fields is either blank or invalid');
+        event.preventDefault();
+      } else {
+        _axios2.default.post('/api/contact', {
+          email: this.state.email,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          message: this.state.message,
+          zipCode: this.state.zipCode,
+          state: this.state.state
+        }).then(function (response) {
+          console.log(response);
+        }).catch(function (error) {
+          console.error(error);
+        });
+      }
     }
   }, {
     key: 'render',
